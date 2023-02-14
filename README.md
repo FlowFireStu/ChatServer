@@ -4,6 +4,8 @@
 
 聊天软件服务端
 
+![ChatServer](https://github.com/FlowFireStu/Picture/blob/main/ChatServer/ChatServer.png)
+
 ## 功能
 
 目前支持功能；登录、注册、添加好友、在线消息转发、离线消息保存
