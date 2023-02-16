@@ -5,7 +5,6 @@ OfflineMessageManager* OfflineMessageManager::m_manager = new OfflineMessageMana
 
 OfflineMessageManager::OfflineMessageManager()
 {
-    init();
 }
 
 OfflineMessageManager *OfflineMessageManager::getInstance()

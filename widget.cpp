@@ -3,6 +3,8 @@
 #include "workthread.h"
 #include <QJsonArray>
 #include <QJsonDocument>
+#include "accountmanager.h"
+#include "offlinemessagemanager.h"
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -18,6 +20,8 @@ Widget::Widget(QWidget *parent)
         ui->startBtn->setEnabled(false);
         m_port = ui->portEdit->text().toUShort();
         m_server->listen(QHostAddress::Any, m_port);
+        AccountManager::getInstance()->init();
+        OfflineMessageManager::getInstance()->init();
     });
 }
 

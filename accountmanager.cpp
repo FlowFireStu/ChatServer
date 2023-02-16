@@ -10,7 +10,6 @@ AccountManager *AccountManager::getInstance()
 
 AccountManager::AccountManager()
 {
-    init();
 }
 
 void AccountManager::init()
