@@ -10,7 +10,7 @@ bool SendMessageProcess::work(const QJsonObject &request)
     {
         QJsonObject head;
         head.insert("type", "request");
-        head.insert("requestType", "message");
+        head.insert("requestType", "Message");
         QJsonArray responseArray;
         responseArray.append(head);
         responseArray.append(request);

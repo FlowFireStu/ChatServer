@@ -34,7 +34,7 @@ void OfflineMessageManager::init()
 
 void OfflineMessageManager::write(const QString &toId, const QJsonObject &message)
 {
-    QString createTable("create table if not exists " + toId + "(message varchar(10000));");
+    QString createTable("create table if not exists " + toId + "(message varchar(5000));");
     QString messageStr = QJsonDocument(message).toVariant().toString();
     QString writeMessage("insert into " + toId + "(message) values(\"" + messageStr + "\");");
     m_database.open();
