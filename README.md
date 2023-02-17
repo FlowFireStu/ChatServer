@@ -2,9 +2,9 @@
 
 ## 简介
 
-聊天软件服务端
+聊天软件服务端，客户端地址：https://github.com/FlowFireStu/ChatClient
 
-![ChatServer](https://github.com/FlowFireStu/Picture/blob/main/ChatServer/ChatServer.png)
+![ChatServer](https://github.com/FlowFireStu/PublicPictures/blob/main/ChatServer/ChatServer.png)
 
 ## 功能
 
