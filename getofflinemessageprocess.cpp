@@ -6,6 +6,7 @@ bool GetOfflineMessageProcess::work(const QJsonObject &request)
     QString id = request.value("id").toString();
     OfflineMessageManager* manager = OfflineMessageManager::getInstance();
     QJsonArray messageArray = manager->read(id);
+    manager->remove(id);
 
     m_head = new QJsonObject;
     m_body = new QJsonObject;

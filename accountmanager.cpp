@@ -61,31 +61,34 @@ QString AccountManager::addAccount(const Account &newAccount)
     m_database.exec(addAccount);
     m_database.exec(addFriendTable);
     m_lock.unlock();
+
     m_database.close();
     return newAccount.id();
 }
 
 bool AccountManager::existAccount(const QString &id)
 {
-    QString command("select * from accounttable where id = \"" + id + "\";");
     m_database.open();
     QSqlQuery query(m_database);
+
+    QString command("select * from accounttable where id = \"" + id + "\";");
     m_lock.lockForRead();
     query.exec(command);
     m_lock.unlock();
+
     m_database.close();
     return query.size();
 }
 
 Account AccountManager::findAccount(const QString &id)
 {
-    QString command("select * from accounttable where id = \"" + id + "\";");
     m_database.open();
     QSqlQuery query(m_database);
+
+    QString command("select * from accounttable where id = \"" + id + "\";");
     m_lock.lockForRead();
     query.exec(command);
     m_lock.unlock();
-    m_database.close();
 
     Account tempAccount;
     query.next();
@@ -93,6 +96,8 @@ Account AccountManager::findAccount(const QString &id)
     tempAccount.setPassword(query.value(1).toString());
     tempAccount.setName(query.value(2).toString());
     tempAccount.setGender(query.value(3).toString());
+
+    m_database.close();
     return tempAccount;
 }
 
@@ -128,9 +133,10 @@ void AccountManager::addFriend(const QString &selfId, const QString &friendId)
 
 void AccountManager::deleteFriend(const QString &selfId, const QString &friendId)
 {
-    QString command("delete from " + selfId + "friendlist where id = \"" + friendId + "\");");
     m_database.open();
     QSqlQuery query(m_database);
+
+    QString command("delete from " + selfId + "friendlist where id = \"" + friendId + "\");");
     m_lock.lockForWrite();
     query.exec(command);
     m_lock.unlock();
@@ -146,19 +152,20 @@ void AccountManager::deleteFriend(const QString &selfId, const QString &friendId
 
 QList<QString> AccountManager::listFriend(const QString &id)
 {
+    m_database.open();
+    QSqlQuery query(m_database);
     QList<QString> list;
 
     QString command("select id from " + id + "friendlist;");
-    m_database.open();
-    QSqlQuery query(m_database);
     m_lock.lockForRead();
     query.exec(command);
     m_lock.unlock();
-    m_database.close();
 
     while (query.next())
     {
         list << query.value(0).toString();
     }
+
+    m_database.close();
     return list;
 }
